@@ -46,3 +46,9 @@ class DoublyLinkedList:
         if node == self.head:
             return None
         return node
+
+    def get_mru(self):
+        node = self.head.next
+        if node == self.tail:
+            return None
+        return node
