@@ -49,22 +49,22 @@ class HashMap:
 
 
     def put(self, key, node):
-
         index = self._hash(key)
         bucket = self.table[index]
 
+        # Check if key already exists → update only
         for entry in bucket:
             if entry[0] == key:
                 entry[1] = node
-                return
+                return  # size does NOT change
 
+        # New key → insert
         bucket.append([key, node])
         self.size += 1
 
-        # LOAD FACTOR CHECK:
-        # if too many elements per bucket → trigger resize
+        # Check load factor → resize if needed
         if self.size / self.capacity > self.load_factor_threshold:
-            self._resize()  #triggers resizing + rehashing
+            self._resize()
 
 
     def delete(self, key):
